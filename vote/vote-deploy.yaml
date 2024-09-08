@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: vote
+  name: vote
+  namespace: vote-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: vote
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: vote
+    spec:
+      containers:
+      - image: 81.81.81.11:1337/vote:v1
+        name: vote
+        resources: {}
+      imagePullSecrets:
+      - name: harbor-registry
+status: {}

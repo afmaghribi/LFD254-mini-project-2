@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: db
+  name: db
+  namespace: vote-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: db
+    spec:
+      containers:
+      - image: postgres:12-alpine
+        name: postgres
+        envFrom:
+        - configMapRef:
+            name: db-cm
+        volumeMounts:
+        - name: data-volume
+          mountPath: /var/lib/postgresql/data
+        resources: {}
+
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: db-pvc
+status: {}
