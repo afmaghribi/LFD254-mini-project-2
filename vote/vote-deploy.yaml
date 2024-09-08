@@ -19,7 +19,7 @@ spec:
         app: vote
     spec:
       containers:
-      - image: 81.81.81.11:1337/vote:v1
+      - image: 81.81.81.11:1337/library/vote:v1
         name: vote
         resources: {}
       imagePullSecrets:
